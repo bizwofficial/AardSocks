@@ -27,4 +27,4 @@ If you want to reconnect to the servers, please type this:
   UDP_Reco<  
   
 ## Easy-to-Use  
-For a built version, [click here]().
+For a built version, [click here](https://codeload.github.com/bizwofficial/AardSocks/zip/Latest).
