@@ -12,7 +12,7 @@ for each in servers:
     sig=False
     print(f'{each}: Handshaking with remote socket ...')
     try:
-        s.sendto(f'UDP_Hello<{each}'.encode('ascii'),(each,PORT))
+        s.sendto(f'UDP_Hello<{each}'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
     except:
         pass
     else:
@@ -35,10 +35,10 @@ while True:
             break
         else:
             for each in socks:
-                s.sendto(c.encode('ascii'),(each,PORT))
+                s.sendto(c.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
     except KeyboardInterrupt:
         for each in socks:
-            s.sendto('UDP_Logout<'.encode('ascii'),(each,PORT))
+            s.sendto('UDP_Logout<'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
         print('*'*20)
         print('Disconnecting ...')
         s.close()
