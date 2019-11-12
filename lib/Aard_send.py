@@ -3,8 +3,11 @@ from socket import *
 
 PORT=5418
 
+os.system('@color f0')
 os.system('@title AardSocks Outbox')
-servers=[each.rstrip() for each in open('servers.conf').readlines()]
+filea=[each.rstrip() for each in open('servers.conf').readlines()]
+alias=filea[0]
+servers=filea[1:]
 print('Establishing UDP socket ...')
 s=socket(AF_INET,SOCK_DGRAM)
 socks=[]
@@ -12,7 +15,7 @@ for each in servers:
     sig=False
     print(f'{each}: Handshaking with remote socket ...')
     try:
-        s.sendto(f'UDP_Hello<{each}'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
+        s.sendto(f'UDP_Hello<{alias}'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
     except:
         pass
     else:
