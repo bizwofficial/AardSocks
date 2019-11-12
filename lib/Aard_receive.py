@@ -15,13 +15,13 @@ print('*'*20)
 while True:
     try:
         ct,sv=s.recvfrom(140)
-        c=ct.decode('ascii')
+        c=ct.decode('ascii').encode(encoding='utf-8').decode('unicode_escape')
         if 'UDP_Logout<' in c:
             print(f'>>{sv[0]} Logged out.')
         elif 'UDP_Hello<' in c:
             print(f'>>Handshaking with {sv[0]}:{sv[1]} ...')
             try:
-                s.sendto(f'UDP_Hello<{sv[0]}'.encode('ascii'),sv)
+                s.sendto(f'UDP_Hello<{sv[0]}'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),sv)
             except:
                 print(f'>>Failed in handshaking with {sv[0]}:{sv[1]}.')
             else:
