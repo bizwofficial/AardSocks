@@ -30,8 +30,10 @@ To run AardSocks, simply double-click "AardSocks.exe".
   
 ## Reconnect  
 If you want to reconnect to the servers, please type this:  
-`  UDP_Reco<`  
-  
+```
+  UDP_Reco<  
+```
+
 ## Easy-to-Use  
 For a built version, [click here](https://codeload.github.com/bizwofficial/AardSocks/zip/Latest).__Python 3.6 needed.__  
 
