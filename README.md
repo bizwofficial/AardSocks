@@ -40,6 +40,3 @@ For a built version, [click here](https://codeload.github.com/bizwofficial/AardS
 ## Why My AardSocks Crash?  
 - Check if your Python is added to PATH.  
 - Check if the source code are compiled.  
-
-## Updates  
-- v1.1.19a Add Unicode support.
