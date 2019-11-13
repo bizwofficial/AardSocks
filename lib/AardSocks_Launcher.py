@@ -3,7 +3,7 @@ import os,time
 ppt='python'
 
 os.system('@color f0')
-print('AardSocks v1.3.19b')
+print('AardSocks v1.4.19b')
 print('\n')
 print('*'*20)
 print('Launching AardSocks ...')

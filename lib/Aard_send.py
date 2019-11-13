@@ -36,6 +36,8 @@ while True:
             s.close()
             os.system('@start python Aard_send.pyc')
             break
+        elif c=='cls':
+            s.sendto('UDP_CLS<'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),('127.0.0.1',PORT))
         elif c.startswith('file<'):
             fil=[each.rstrip() for each in open(c[5:]).readlines()]
             nm=c.split('\\')[-1]

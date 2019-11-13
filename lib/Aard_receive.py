@@ -28,6 +28,8 @@ while True:
         c=ct.decode('ascii').encode(encoding='utf-8').decode('unicode_escape')
         if 'UDP_Logout<' in c:
             print(f'>>{sv[0]} Logged out.')
+        elif c=='UDP_CLS<':
+            os.system('@cls')
         elif 'UDP_Hello<' in c:
             print(f'>>Handshaking with {sv[0]}:{sv[1]} ...')
             name[sv[0]]=c[10:]
