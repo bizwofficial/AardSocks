@@ -1,5 +1,10 @@
 import os
-from socket import *
+from socket import socket,AF_INET,SOCK_DGRAM
+import time
+
+def gettime():
+    a=time.localtime()
+    return (a.tm_year,a.tm_mon,a.tm_mday,a.tm_hour,a.tm_min)
 
 PORT=5418
 os.system('@color f0')
@@ -15,6 +20,7 @@ s.bind(('',PORT))
 print(f'\nPort {PORT}, ready to receive.')
 print('*'*20)
 name={'127.0.0.1':'Me'}
+lctm=gettime()
 
 while True:
     try:
@@ -32,8 +38,26 @@ while True:
             else:
                 trusted_servers.append(sv[0])
                 print(f'>>Finished handshaking with {sv[0]}:{sv[1]}.')
+        elif c.startswith('UDP_Filetrans<'):
+            nm=c[14:]
+            fil=open(f'..\\Inbox\\{nm}','w')
+            sig=True
+            while sig:
+                ct1,sv1=s.recvfrom(140)
+                if sv1==sv:
+                    c1=ct1.decode('ascii').encode(encoding='utf-8').decode('unicode_escape')
+                    if c1=='UDP_EOF':
+                        fil.close()
+                        sig=False
+                    else:
+                        print(c1,file=fil)
+            print(f'>>1 file received: {nm}')
+
         else:
             if sv[0] in trusted_servers:
+                if gettime()!=lctm:
+                    lctm=gettime()
+                    print('*'*15,f'{lctm[3]}:{lctm[4]}','*'*15,sep='')
                 print(f'{name[sv[0]]}: {c}')
             else:
                 pass

@@ -1,5 +1,5 @@
 import os
-from socket import *
+from socket import socket,AF_INET,SOCK_DGRAM
 
 PORT=5418
 
@@ -36,6 +36,17 @@ while True:
             s.close()
             os.system('@start python Aard_send.pyc')
             break
+        elif c.startswith('file<'):
+            fil=[each.rstrip() for each in open(c[5:]).readlines()]
+            nm=c.split('\\')[-1]
+            print(f'Sending file {nm} ...')
+            for each in socks:
+                s.sendto(f'UDP_Filetrans<{nm}'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
+            for line in fil:
+                for each in socks:
+                    s.sendto(line.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
+            for each in socks:
+                s.sendto(f'UDP_EOF'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
         else:
             for each in socks:
                 s.sendto(c.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
