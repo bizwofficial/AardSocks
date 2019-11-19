@@ -7,7 +7,7 @@ def gettime():
     return (a.tm_year,a.tm_mon,a.tm_mday,a.tm_hour,a.tm_min)
 
 PORT=5418
-os.system('@color f0')
+os.system('@color 70')
 os.system('@title AardSocks Inbox')
 
 filea=[each.rstrip() for each in open('servers.conf').readlines()]
@@ -24,7 +24,7 @@ lctm=gettime()
 
 while True:
     try:
-        ct,sv=s.recvfrom(140)
+        ct,sv=s.recvfrom(16384)
         c=ct.decode('ascii').encode(encoding='utf-8').decode('unicode_escape')
         if 'UDP_Logout<' in c:
             print(f'>>{sv[0]} Logged out.')
@@ -40,12 +40,17 @@ while True:
             else:
                 trusted_servers.append(sv[0])
                 print(f'>>Finished handshaking with {sv[0]}:{sv[1]}.')
+        elif c.startswith('UDP_LocalLogout<'):
+            print('*'*20)
+            print('Disconnecting ...')
+            s.close()
+            break
         elif c.startswith('UDP_Filetrans<'):
             nm=c[14:]
             fil=open(f'..\\Inbox\\{nm}','w')
             sig=True
             while sig:
-                ct1,sv1=s.recvfrom(140)
+                ct1,sv1=s.recvfrom(16384)
                 if sv1==sv:
                     c1=ct1.decode('ascii').encode(encoding='utf-8').decode('unicode_escape')
                     if c1=='UDP_EOF':

@@ -3,7 +3,7 @@ from socket import socket,AF_INET,SOCK_DGRAM
 
 PORT=5418
 
-os.system('@color f0')
+os.system('@color 70')
 os.system('@title AardSocks Outbox')
 filea=[each.rstrip() for each in open('servers.conf').readlines()]
 alias=filea[0]
@@ -54,6 +54,7 @@ while True:
                 s.sendto(c.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
     except KeyboardInterrupt:
         for each in socks:
+            s.sendto('UDP_LocalLogout<'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
             s.sendto('UDP_Logout<'.encode('unicode_escape').decode(encoding='utf-8').encode('ascii'),(each,PORT))
         print('*'*20)
         print('Disconnecting ...')
