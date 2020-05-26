@@ -1,4 +1,4 @@
 language: python
 python:
   - "3.8"
-script: nosetests
+script: python ./lib/aardsocks_launcher.py
