@@ -1,4 +1,5 @@
 # Thanks for using AardSocks!
+[![](https://travis-ci.org/github/bizwofficial/AardSocks/AardSocks.svg?branch=master)](https://travis-ci.org/github/bizwofficial/AardSocks)
 This is a light software based on UDP protocol helping you chat on LAN.
 
 ## Compile  
