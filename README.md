@@ -1,4 +1,5 @@
 # Thanks for using AardSocks!
+![](https://img.shields.io/badge/language-{python}-{blue}.svg)
 [![](https://travis-ci.org/github/bizwofficial/AardSocks/AardSocks.svg?branch=master)](https://travis-ci.org/github/bizwofficial/AardSocks)
 This is a light software based on UDP protocol helping you chat on LAN.
 
